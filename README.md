@@ -140,14 +140,14 @@ policy](https://w3c.github.io/webappsec-permissions-policy/document-policy.html)
 The following table summarizes the inheritance behaviour for those policies:
 
 
-| Policy                | Parent document embeds **empty** or **srcdoc frame** | Document creates **popup**                                       | Navigation to **about:blank** or **data:**                          | Document creates **blob** |
-| ------                | :--------------------------------------------------: | :------------------------:                                       | :----------------------------------------:                          | :-----------------------: |
-| **Referrer policy**   | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
-| **CSP**               | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
-| **COOP**              | None                                                 | Copy from opener's top level document if same origin with opener | Copy from initiator's top level document if same origin with opener | Copy from creator         |
-| **COEP**              | Copy from parent                                     | Copy from opener                                                 | Copy from parent (if any)                                           |                           |
-| **Address space**[^1] | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
-| **Document policy**   | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
+| Policy                                             | Parent document embeds **empty** or **srcdoc frame** | Document creates **popup**                                       | Navigation to **about:blank** or **data:**                          | Document creates **blob** |
+| ------                                             | :--------------------------------------------------: | :------------------------:                                       | :----------------------------------------:                          | :-----------------------: |
+| **Referrer policy**                                | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
+| **CSP**                                            | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
+| **COOP**                                           | None                                                 | Copy from opener's top level document if same origin with opener | Copy from initiator's top level document if same origin with opener | Copy from creator         |
+| **COEP**                                           | Copy from parent                                     | Copy from opener                                                 | Copy from parent (if any)                                           |                           |
+| **Address space**<sup>[1](#fn-address-space)</sup> | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
+| **Document policy**                                | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
 
 
 One word aside for Document Policy: according to the specification, it looks
@@ -208,4 +208,7 @@ foundation with the easier case we described above.
 
 ## Notes
 
-[^1]: Even if the specification does not address inheritance for local scheme documents, we believe it makes sense to adopt the same rules as for Content Security Policy. As such, we would like to add address space to the policy container, too.
+<a name="fn-address-space">1</a>: Even if the specification does not address
+inheritance for local scheme documents, we believe it makes sense to adopt the
+same rules as for Content Security Policy. As such, we would like to add address
+space to the policy container, too.
