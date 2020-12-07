@@ -3,7 +3,7 @@
 [@parismeuleman](https://github.com/ParisMeuleman), [@antosart](https://github.com/antosart) - Dec. 2020
 
 
-# The problem
+## The problem
 
 The web defines several security policies, among which we count: **Content
 Security Policy**, **Cross Origin Opener Policy**, **Cross Origin Embedder
@@ -28,7 +28,7 @@ Such a crucial inheritance mechanism should be defined once and for all in a
 central place.
 
 
-# A solution: the Policy Container
+## A solution: the Policy Container
 
 A proposal was made on [Github](https://github.com/whatwg/html/issues/4926):
 Instead of attaching every single policy to the html document, **let's attach to
@@ -47,7 +47,7 @@ to the clone operation.
 Let us now describe the main properties of the policy container.
 
 
-## Policy container for new documents
+### Policy container for new documents
 
 Every document gets one policy container at creation time. A document's policy
 container is never removed, recreated or reattached, although the values of the
@@ -61,7 +61,7 @@ via meta tags). The following rules apply to new, **empty documents**:
 ![A picture displaying the inheritance rule for new documents](policy-container-new-document.png)
 
 
-## Policy container and navigations
+### Policy container and navigations
 
 *   If a document initiates a
     [navigation](https://html.spec.whatwg.org/multipage/browsing-the-web.html#navigate),
@@ -82,14 +82,14 @@ via meta tags). The following rules apply to new, **empty documents**:
 ![A picture displaying inheritance rule for local scheme navigations](policy-container-navigation-local-scheme.png)
 
 
-# Additional uses of policy container
+## Additional uses of policy container
 
 The policy container will also help better handle two cases in which at the
 moment we are not using the corrected policies on a navigated document: history
 and blobs.
 
 
-## Policy container and history
+### Policy container and history
 
 In case of a **history** navigation, it seems natural to reapply the policies
 that the document initially came with. For network-scheme documents we don't
@@ -108,7 +108,7 @@ history navigations, since they just display again the document and window which
 were saved before, so the exact same policies apply.
 
 
-## Policy container and blobs
+### Policy container and blobs
 
 The other case where inheritance is currently problematic is **blob**
 documents. Although being a local scheme, inheritance for blob documents should
@@ -125,7 +125,7 @@ in the blob store. Then, we have the following rules:
     URL entry and we apply a clone of it to the resulting document.
 
 
-# The security policies
+## The security policies
 
 The policies that we want to analyze and add to the policy container first are
 **[Content Security Policy](https://w3c.github.io/webappsec-csp/)**, **[Cross
@@ -157,7 +157,7 @@ to Document Policy: adding Document Policy to the policy container would be the
 good way of doing that.
 
 
-# Follow-up: Policies enforced on the browsing context
+## Follow-up: Policies enforced on the browsing context
 
 There are some other security policies/properties which include **[Permissions
 Policy](https://www.w3.org/TR/permissions-policy-1/)**, **[Sandbox
