@@ -2,6 +2,8 @@
 
 [@parismeuleman](https://github.com/ParisMeuleman), [@antosart](https://github.com/antosart) - Dec. 2020
 
+For dicussions refer to the [issue](https://github.com/whatwg/html/issues/4926)
+on the whatwg/html repository to keep the conversation in one place.
 
 ## The problem
 
