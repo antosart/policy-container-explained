@@ -142,7 +142,7 @@ policy](https://w3c.github.io/webappsec-permissions-policy/document-policy.html)
 The following table summarizes the inheritance behaviour for those policies:
 
 
-| Policy                                             | Parent document embeds **empty** or **srcdoc frame** | Document creates **popup**                                       | Navigation to **about:blank** or **data:**                          | Document creates **blob URL** |
+| Policy                                             | Parent document creates **empty** or **srcdoc frame** | Document creates **popup**                                       | Navigation to **about:blank** or **data:**                          | Document creates **blob URL** |
 | ------                                             | :--------------------------------------------------: | :------------------------:                                       | :----------------------------------------:                          | :-----------------------: |
 | **Referrer policy**                                | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
 | **CSP**                                            | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
