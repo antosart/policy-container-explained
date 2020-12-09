@@ -121,7 +121,7 @@ container makes this easily possible. First, we should add a property for the
 policy container in the blob URL entry so that we can store the policy container
 in the blob store. Then, we have the following rules:
 
-*   If a document creates a blob, it stores a clone of its policy container as
+*   If a document creates a blob URL, it stores a clone of its policy container as
     part of the blob URL entry in the blob store.
 *   When navigating to a blob, we load the blob's policy container from the blob
     URL entry and we apply a clone of it to the resulting document.
@@ -142,7 +142,7 @@ policy](https://w3c.github.io/webappsec-permissions-policy/document-policy.html)
 The following table summarizes the inheritance behaviour for those policies:
 
 
-| Policy                                             | Parent document embeds **empty** or **srcdoc frame** | Document creates **popup**                                       | Navigation to **about:blank** or **data:**                          | Document creates **blob** |
+| Policy                                             | Parent document embeds **empty** or **srcdoc frame** | Document creates **popup**                                       | Navigation to **about:blank** or **data:**                          | Document creates **blob URL** |
 | ------                                             | :--------------------------------------------------: | :------------------------:                                       | :----------------------------------------:                          | :-----------------------: |
 | **Referrer policy**                                | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
 | **CSP**                                            | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
