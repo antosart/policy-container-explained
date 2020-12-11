@@ -69,6 +69,8 @@ via meta tags). The following rules apply to new, **empty documents**:
     [navigation](https://html.spec.whatwg.org/multipage/browsing-the-web.html#navigate),
     we store a clone of its policy container in the navigation params (as
     **initiator policy container**).
+    *   Note: for this purpose, we always regard the initiator of a navigation
+        to `about:srcdoc` to be the parent's frame.
 *   If a navigation resolves to a network scheme, we attach to the response a
     new **response policy container**, which is filled in with the parsed values
     of the various policies (it is the responsibility of each individual policy
