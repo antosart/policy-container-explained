@@ -144,15 +144,22 @@ policy](https://w3c.github.io/webappsec-permissions-policy/document-policy.html)
 The following table summarizes the inheritance behaviour for those policies:
 
 
-| Policy                                             | Parent document creates **empty** or **srcdoc frame** | Document creates **popup**                                       | Navigation to **about:blank** or **data:**                          | Document creates **blob URL** |
-| ------                                             | :--------------------------------------------------: | :------------------------:                                       | :----------------------------------------:                          | :-----------------------: |
-| **Referrer policy**                                | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
-| **CSP**                                            | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
-| **COOP**                                           | None                                                 | Copy from opener's top level document if same origin with opener | Copy from initiator's top level document if same origin with opener | Copy from creator         |
-| **COEP**                                           | Copy from parent                                     | Copy from opener                                                 | Copy from parent (if any)                                           |                           |
-| **Address space**<sup>[1](#fn-address-space)</sup> | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
-| **Document policy**                                | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Copy from creator         |
+| Policy                                             | Parent document embeds **empty** or **srcdoc frame** | Document creates **popup**                                       | Navigation to **about:blank** or **data:**                          | Executing **javascript URL** | Document creates **blob URL** |
+| ------                                             | :--------------------------------------------------: | :------------------------:                                       | :----------------------------------------:                          | :--------------------------: | :-----------------------: |
+| **Referrer policy**                                | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Keep previous policies       | Copy from creator         |
+| **CSP**                                            | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Keep previous policies       | Copy from creator         |
+| **COOP**                                           | None                                                 | Copy from opener's top level document if same origin with opener | Copy from initiator's top level document if same origin with opener | Keep previous policies       | Copy from creator         |
+| **COEP**                                           | Copy from parent                                     | Copy from opener                                                 | Copy from parent (if any)                                           | Keep previous policies       |                           |
+| **Address space**<sup>[1](#fn-address-space)</sup> | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Keep previous policies       | Copy from creator         |
+| **Document policy**                                | Copy from parent                                     | Copy from opener                                                 | Copy from initiator                                                 | Keep previous policies       | Copy from creator         |
 
+
+Note that the case of executing a javascript URL only matters if the script
+returns a string and hence we create a new document.
+
+Also, we should mention the case of `document.open`: this API overwrites the
+document's content but does not create a new document. In this case, we should
+keep the document's policies.
 
 One word aside for Document Policy: according to the specification, it looks
 like there is no inheritance mechanism defined for document policy. However, it
